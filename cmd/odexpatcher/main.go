@@ -1,20 +1,18 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"os"
 
 	"github.com/jessevdk/go-flags"
 )
 
+const workdingDir = "/data/local/tmp/odexpatcher"
+
 type CommandOptions struct {
-	VersionFlag  bool    `long:"version" description:"Show the app version information"`
-	Exchange     string  `long:"exchange" description:"Crypto currencies exchange"`
-	TargetToken  string  `long:"target" description:"Snipping tareget token"`
-	SourceToken  string  `long:"source" description:"Source token to swap from (leave empty to use native currency)"`
-	BuyAmountIn  float64 `long:"buyAmountIn" descript:"Amount of source token"`
-	BuyAmountOut float64 `long:"buyAmountOut" descript:"Amount of target token"`
+	VersionFlag bool     `long:"version" description:"Show the app version information"`
+	Patch       PatchCmd `command:"patch" description:"Generate patched oat from dex"`
+	Info        InfoCmd  `command:"info" description:"Get oat file info"`
 }
 
 func main() {
@@ -37,7 +35,5 @@ func main() {
 		printVersion()
 		os.Exit(0)
 	}
-
-	fmt.Println("aaa")
 
 }
